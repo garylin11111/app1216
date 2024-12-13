@@ -11,7 +11,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -42,53 +44,65 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )*/
+
                     FirstScreen()
                     SecondScreen()
                 }
             }
         }
     }
-}
-
-@Composable
-fun FirstScreen (){
+}@Composable
+fun FirstScreen() {
     val context = LocalContext.current
-    val imageModifier = Modifier
-    .size(1000.dp)
+    val imageModifier = Modifier.size(1000.dp)
     Image(
         painter = painterResource(id = R.drawable.park),
         contentDescription = null,
         contentScale = ContentScale.FillHeight,
-        alpha = 0.8F ,
-                modifier = imageModifier
+        modifier = imageModifier
     )
-    Column(modifier = Modifier
-        .fillMaxSize(),
-    verticalArrangement = Arrangement. Center,
-    horizontalAlignment = Alignment. CenterHorizontally
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center, // 子項目在垂直方向居中排列
+        horizontalAlignment = Alignment.CenterHorizontally // 子項目在水平方向居中
     ) {
         Button(onClick = {
-            var it = Intent(context,EducationActivity::class.java)
-            context.startActivity(it)
-        })
-        {
+            val intent = Intent(context, EducationActivity::class.java)
+            context.startActivity(intent)
+        }) {
             Text(text = "教育模式")
         }
-    }
-}
-@Composable
-fun SecondScreen (){
-    val context = LocalContext.current
-    Column(modifier = Modifier
-        .fillMaxSize()
-    ) {
+        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
         Button(onClick = {
-            var it = Intent(context,GameActivity::class.java)
-            context.startActivity(it)
-        })
-        {
+            val intent = Intent(context, GameActivity::class.java)
+            context.startActivity(intent)
+        }) {
             Text(text = "遊戲模式")
         }
     }
 }
 
+@Composable
+fun SecondScreen() {
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center, // 子項目在垂直方向居中排列
+        horizontalAlignment = Alignment.CenterHorizontally // 子項目在水平方向居中
+    ) {
+        Button(onClick = {
+            val intent = Intent(context, GameActivity::class.java)
+            context.startActivity(intent)
+        }) {
+            Text(text = "遊戲模式")
+        }
+        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
+        Button(onClick = {
+            val intent = Intent(context, EducationActivity::class.java)
+            context.startActivity(intent)
+        }) {
+            Text(text = "教育模式")
+        }
+    }
+}
