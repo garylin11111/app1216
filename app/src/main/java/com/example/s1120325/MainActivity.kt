@@ -44,7 +44,6 @@ class MainActivity : ComponentActivity() {
                         name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )*/
-
                     FirstScreen()
                     SecondScreen()
                 }
@@ -63,8 +62,8 @@ fun FirstScreen() {
     )
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center, // 子項目在垂直方向居中排列
-        horizontalAlignment = Alignment.CenterHorizontally // 子項目在水平方向居中
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
@@ -88,21 +87,21 @@ fun SecondScreen() {
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center, // 子項目在垂直方向居中排列
-        horizontalAlignment = Alignment.CenterHorizontally // 子項目在水平方向居中
-    ) {
-        Button(onClick = {
-            val intent = Intent(context, GameActivity::class.java)
-            context.startActivity(intent)
-        }) {
-            Text(text = "遊戲模式")
-        }
-        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
             context.startActivity(intent)
         }) {
             Text(text = "教育模式")
+        }
+        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
+        Button(onClick = {
+            val intent = Intent(context, GameActivity::class.java)
+            context.startActivity(intent)
+        }) {
+            Text(text = "遊戲模式")
         }
     }
 }

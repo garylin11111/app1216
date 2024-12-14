@@ -39,7 +39,6 @@ class GameActivity : ComponentActivity() {
 @Composable
 fun Main() {
     val context = LocalContext.current  //取得App的運行環境
-    val activity = (context as Activity)  //取得App運行的活動
     Column {
         Button(
             onClick = {
