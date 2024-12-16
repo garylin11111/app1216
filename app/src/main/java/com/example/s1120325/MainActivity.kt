@@ -31,6 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.s1120325.ui.theme.S1120325Theme
 
 class MainActivity : ComponentActivity() {
@@ -46,6 +47,7 @@ class MainActivity : ComponentActivity() {
                     )*/
                     FirstScreen()
                     SecondScreen()
+
                 }
             }
         }
@@ -65,6 +67,16 @@ fun FirstScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
+            Text(
+                text = "環保小幫手" ,
+                fontSize = 60.sp,
+                modifier = Modifier.padding(top = 16.dp),
+                color = Color.DarkGray
+            )
+        Spacer(modifier = Modifier.height(20.dp))
+
+
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
             context.startActivity(intent)
@@ -90,6 +102,15 @@ fun SecondScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+        Text(
+            text = "環保小幫手" ,
+            fontSize = 60.sp,
+            modifier = Modifier.padding(top = 16.dp),
+            color = Color.DarkGray
+
+        )
+        Spacer(modifier = Modifier.height(20.dp))
+
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
             context.startActivity(intent)

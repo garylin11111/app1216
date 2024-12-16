@@ -20,19 +20,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.example.s1120325.ui.theme.S1120325Theme
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.geometry.Offset
-
+import androidx.compose.ui.unit.sp
 
 
 class EducationActivity : ComponentActivity() {
@@ -55,11 +59,24 @@ class EducationActivity : ComponentActivity() {
 @Composable
 fun Education() {
     val context = LocalContext.current  // 取得App的運行環境
-    var msg by remember { mutableStateOf("垃圾分類知識卡") }
-    var offset1 by remember { mutableStateOf(Offset.Zero) }
-    var offset2 by remember { mutableStateOf(Offset.Zero) }
-    var card = arrayListOf(R.drawable.card1, R.drawable.card2, R.drawable.card3, R.drawable.card4, R.drawable.card5)
-    var Number by remember { mutableStateOf(1) }
+    val cards = listOf(
+        R.drawable.card1,
+        R.drawable.card2,
+        R.drawable.card3,
+        R.drawable.card4,
+        R.drawable.card5
+    )
+    val messages = listOf(
+        "香蕉(廚餘)",
+        "寶特瓶(塑膠類回收)",
+        "酒瓶(玻璃 回收)",
+        "塑膠袋(一般垃圾)",
+        "電池(不可回收垃圾)"
+    )
+    var currentCardIndex by remember { mutableStateOf(0) }
+    var message by remember { mutableStateOf(messages[currentCardIndex]) }
+
+    var totalDrag by remember { mutableStateOf(0f) } // 記錄拖曳總距離
 
 
     Box(
@@ -81,10 +98,6 @@ fun Education() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "\n$msg"
-            )
-
             Box(
                 modifier = Modifier.size(700.dp), // 圖片重疊區域大小
                 contentAlignment = Alignment.Center
@@ -93,47 +106,41 @@ fun Education() {
                     painter = painterResource(id = R.drawable.edbackground),
                     contentDescription = "分類卡背景",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(500.dp)
+                    modifier = Modifier.size(300.dp)
                 )
-
+                Text(
+                    text = messages[currentCardIndex],
+                    modifier = Modifier.padding(top = 400.dp),
+                    fontSize = 25.sp
+                )
                 Image(
-                    painter = painterResource(id= card[Number]),
+                    painter = painterResource(id = cards[currentCardIndex]),
                     contentDescription = "分類卡圖片",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier.size(200.dp)
                         .pointerInput(Unit) {
-                            detectTapGestures(
-                                onTap = {
-                                    if (msg == "垃圾分類知識卡"){
-                                    msg = "香蕉(廚餘)"
-                                }
-                                else{
-                                    msg = "垃圾分類知識卡"
-                                }
-                                }
-                                ,
-                            )
-                            detectDragGesturesAfterLongPress(
-                                onDrag = { change, dragAmount -> offset2+=dragAmount},
-                                onDragStart = {
-                                    offset1 = it
-                                    offset2 = it },
+                            detectDragGestures(
+                                onDrag = { change, dragAmount ->
+                                    totalDrag += dragAmount.x // 累積水平方向拖曳距離
+                                    change.consume() // 消耗拖曳事件
+                                },
                                 onDragEnd = {
-                                    if (offset2.x >= offset1.x){
-                                    msg = "長按後向右拖曳"
-                                    Number ++
-                                    if (Number>5){Number=0}
+                                    val dragThreshold = 100f // 定義切換圖片的最小拖曳距離
+                                    if (totalDrag > dragThreshold) {
+                                        currentCardIndex = (currentCardIndex + 1) % cards.size
+                                    } else if (totalDrag < -dragThreshold) {
+                                        currentCardIndex = if (currentCardIndex - 1 < 0) cards.size - 1 else currentCardIndex - 1
+                                    }
+                                    message = messages[currentCardIndex]
+                                    totalDrag = 0f // 重置拖曳距離
+                                },
+                                onDragCancel = {
+                                    totalDrag = 0f // 重置拖曳距離
                                 }
-                                else{
-                                    msg = "長按後向左拖曳"
-                                    Number --
-                                    if (Number<0){Number=5}
-                                }}
                             )
-
                         }
-
                 )
+
             }
         }
     }
