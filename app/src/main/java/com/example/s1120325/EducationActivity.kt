@@ -106,18 +106,18 @@ fun Education() {
                     painter = painterResource(id = R.drawable.edbackground),
                     contentDescription = "分類卡背景",
                     contentScale = ContentScale.Crop,
-                    modifier = Modifier.size(300.dp)
+                    modifier = Modifier.size(500.dp)
                 )
                 Text(
                     text = messages[currentCardIndex],
                     modifier = Modifier.padding(top = 400.dp),
-                    fontSize = 25.sp
+                    fontSize = 40.sp
                 )
                 Image(
                     painter = painterResource(id = cards[currentCardIndex]),
                     contentDescription = "分類卡圖片",
                     contentScale = ContentScale.Fit,
-                    modifier = Modifier.size(200.dp)
+                    modifier = Modifier.size(250.dp)
                         .pointerInput(Unit) {
                             detectDragGestures(
                                 onDrag = { change, dragAmount ->

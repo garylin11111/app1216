@@ -47,12 +47,13 @@ class MainActivity : ComponentActivity() {
                     )*/
                     FirstScreen()
                     SecondScreen()
-
+                    ThirdScreen()
                 }
             }
         }
     }
-}@Composable
+}
+@Composable
 fun FirstScreen() {
     val context = LocalContext.current
     val imageModifier = Modifier.size(1000.dp)
@@ -60,35 +61,61 @@ fun FirstScreen() {
         painter = painterResource(id = R.drawable.park),
         contentDescription = null,
         contentScale = ContentScale.FillHeight,
-        modifier = imageModifier
+        modifier = imageModifier.background(Color.White.copy(alpha = 0.7f))
     )
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
-            Text(
-                text = "環保小幫手" ,
-                fontSize = 60.sp,
-                modifier = Modifier.padding(top = 16.dp),
-                color = Color.DarkGray
-            )
-        Spacer(modifier = Modifier.height(20.dp))
-
+        Text(
+            text = "環保小幫手",
+            fontSize = 60.sp,
+            modifier = Modifier.padding(top = 16.dp),
+            color = Color.Black
+        )
+        Spacer(modifier = Modifier.height(80.dp))
 
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
             context.startActivity(intent)
-        }) {
+        },
+            colors = buttonColors(Color.Red)) {
             Text(text = "教育模式")
+            Image(
+                painterResource(id = R.drawable.educationbutton),
+                contentDescription ="button icon",
+                modifier = Modifier.size(60.dp)
+            )
+
         }
-        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
+        Spacer(modifier = Modifier.height(70.dp))
         Button(onClick = {
             val intent = Intent(context, GameActivity::class.java)
             context.startActivity(intent)
-        }) {
+        },
+            colors = buttonColors(Color.Red)) {
             Text(text = "遊戲模式")
+            Image(
+                painterResource(id = R.drawable.gamebutton),
+                contentDescription ="button icon",
+                modifier = Modifier.size(60.dp)
+            )
+
+        }
+        Spacer(modifier = Modifier.height(70.dp))
+        Button(onClick = {
+            val intent = Intent(context, TestActivity::class.java)
+            context.startActivity(intent)
+        },
+            colors = buttonColors(Color.Red)) {
+            Text(text = "測驗模式")
+            Image(
+                    painterResource(id = R.drawable.testbutton),
+            contentDescription ="button icon",
+            modifier = Modifier.size(60.dp)
+            )
+
         }
     }
 }
@@ -101,28 +128,115 @@ fun SecondScreen() {
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Text(
-            text = "環保小幫手" ,
+            text = "環保小幫手",
             fontSize = 60.sp,
             modifier = Modifier.padding(top = 16.dp),
             color = Color.DarkGray
-
         )
-        Spacer(modifier = Modifier.height(20.dp))
+        Spacer(modifier = Modifier.height(80.dp))
 
         Button(onClick = {
             val intent = Intent(context, EducationActivity::class.java)
             context.startActivity(intent)
-        }) {
+        },
+            colors = buttonColors(Color.Red)) {
             Text(text = "教育模式")
+            Image(
+                    painterResource(id = R.drawable.educationbutton),
+            contentDescription ="button icon",
+            modifier = Modifier.size(60.dp)
+            )
+
         }
-        Spacer(modifier = Modifier.height(20.dp)) // 按鈕之間的間距
+        Spacer(modifier = Modifier.height(70.dp))
         Button(onClick = {
             val intent = Intent(context, GameActivity::class.java)
             context.startActivity(intent)
-        }) {
+        },
+            colors = buttonColors(Color.Red)) {
             Text(text = "遊戲模式")
+            Image(
+                    painterResource(id = R.drawable.gamebutton),
+            contentDescription ="button icon",
+            modifier = Modifier.size(60.dp)
+            )
+
+        }
+        Spacer(modifier = Modifier.height(70.dp))
+        Button(onClick = {
+            val intent = Intent(context, TestActivity::class.java)
+            context.startActivity(intent)
+        },
+            colors = buttonColors(Color.Red)) {
+            Text(text = "測驗模式")
+            Image(
+                    painterResource(id = R.drawable.testbutton),
+            contentDescription ="button icon",
+            modifier = Modifier.size(60.dp)
+            )
+
+        }
+    }
+}
+
+@Composable
+fun ThirdScreen() {
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "環保小幫手",
+            fontSize = 60.sp,
+            modifier = Modifier.padding(top = 16.dp),
+            color = Color.DarkGray
+        )
+        Spacer(modifier = Modifier.height(80.dp))
+
+        Button(onClick = {
+            val intent = Intent(context, EducationActivity::class.java)
+            context.startActivity(intent) },
+            colors = buttonColors(Color.Red)
+        ) {
+            Text(text = "教育模式")
+            Image(
+                painterResource(id = R.drawable.educationbutton),
+                contentDescription ="button icon",
+                modifier = Modifier.size(60.dp)
+            )
+        }
+        Spacer(modifier = Modifier.height(70.dp))
+        Button(onClick = {
+            val intent = Intent(context, GameActivity::class.java)
+            context.startActivity(intent)
+        },
+            colors = buttonColors(Color.Red)) {
+            Text(text = "遊戲模式")
+            Image(
+                painterResource(id = R.drawable.gamebutton),
+                contentDescription ="button icon",
+                modifier = Modifier.size(60.dp)
+            )
+
+        }
+        Spacer(modifier = Modifier.height(70.dp))
+        Button(onClick = {
+            val intent = Intent(context, TestActivity::class.java)
+            context.startActivity(intent)
+        },
+            colors = buttonColors(Color.Red)) {
+            Text(text = "測驗模式")
+            Image(
+                painterResource(id = R.drawable.testbutton),
+                contentDescription ="button icon",
+                modifier = Modifier.size(60.dp)
+            )
+
         }
     }
 }
