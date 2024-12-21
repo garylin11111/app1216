@@ -21,15 +21,10 @@ import androidx.compose.ui.res.painterResource
 import com.example.s1120325.ui.theme.S1120325Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectDragGestures
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -60,11 +55,11 @@ class EducationActivity : ComponentActivity() {
 fun Education() {
     val context = LocalContext.current  // 取得App的運行環境
     val cards = listOf(
-        R.drawable.card1,
-        R.drawable.card2,
-        R.drawable.card3,
-        R.drawable.card4,
-        R.drawable.card5
+        R.drawable.banana,
+        R.drawable.bottle,
+        R.drawable.glass,
+        R.drawable.plastic,
+        R.drawable.battery
     )
     val messages = listOf(
         "香蕉(廚餘)",

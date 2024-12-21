@@ -47,7 +47,6 @@ class MainActivity : ComponentActivity() {
                     )*/
                     FirstScreen()
                     SecondScreen()
-                    ThirdScreen()
                 }
             }
         }
@@ -103,22 +102,8 @@ fun FirstScreen() {
             )
 
         }
-        Spacer(modifier = Modifier.height(70.dp))
-        Button(onClick = {
-            val intent = Intent(context, TestActivity::class.java)
-            context.startActivity(intent)
-        },
-            colors = buttonColors(Color.Red)) {
-            Text(text = "測驗模式")
-            Image(
-                    painterResource(id = R.drawable.testbutton),
-            contentDescription ="button icon",
-            modifier = Modifier.size(60.dp)
-            )
-
         }
     }
-}
 
 @Composable
 fun SecondScreen() {
@@ -162,25 +147,11 @@ fun SecondScreen() {
             contentDescription ="button icon",
             modifier = Modifier.size(60.dp)
             )
-
         }
-        Spacer(modifier = Modifier.height(70.dp))
-        Button(onClick = {
-            val intent = Intent(context, TestActivity::class.java)
-            context.startActivity(intent)
-        },
-            colors = buttonColors(Color.Red)) {
-            Text(text = "測驗模式")
-            Image(
-                    painterResource(id = R.drawable.testbutton),
-            contentDescription ="button icon",
-            modifier = Modifier.size(60.dp)
-            )
-
         }
     }
-}
 
+/*
 @Composable
 fun ThirdScreen() {
     val context = LocalContext.current
@@ -239,4 +210,4 @@ fun ThirdScreen() {
 
         }
     }
-}
+}*/
